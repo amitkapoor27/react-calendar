@@ -11,6 +11,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
+import TodoList from "./TodoList";
 
 
 
@@ -79,24 +80,7 @@ const DayComponents = () => {
                 sx={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}
             >
                 <Paper sx={{minWidth:'500px'}}>
-                    <h2>Select date for event:</h2>
-                    <p>Day: {selectedDay}</p>
-                    <TextField
-                        label="Event Date"
-                        type="date"
-                        value={eventDate}
-                        onChange={(e) => setEventDate(e.target.value)}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleEventSubmit}
-                    >
-                        Save Event
-                    </Button>
+                    <TodoList/>
                 </Paper>
             </Modal>
         </TableContainer>
