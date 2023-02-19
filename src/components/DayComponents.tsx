@@ -38,8 +38,9 @@ const DayComponents = () => {
         const day = daysArray[i];
         return day ? day : null; // set empty cells for days beyond 31
     });
-
+    const dt = new Date().getDate();
     return (
+
         <TableContainer component={Paper}>
             <Table>
                 <TableBody>
@@ -56,7 +57,7 @@ const DayComponents = () => {
                                             border: "1px solid rgba(224, 224, 224, 1)",
                                         }}
                                     >
-                                        <Typography onClick={() => handleDayClick(day)} variant="subtitle1" sx={{cursor:"pointer"}}>
+                                        <Typography onClick={() => handleDayClick(day)} sx={{textDecoration:(cellsArray[index]===dt)?"underline double  blue;":"",cursor:"pointer"}} variant="subtitle1">
                                             
                                             {cellsArray[index] !== null
                                                 ? cellsArray[index]

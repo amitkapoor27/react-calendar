@@ -16,6 +16,13 @@ interface MonthComponentsProps {
     onSelMonth:(value: string) => void;
    
   }
+const getColor=(year:number,month:string)=>{
+    
+    const monthIndex = new Date(Date.parse(month +" 1, "+year)).getMonth();
+    const daysInMonth = new Date(year, monthIndex+1, 0).getDate();
+    const clor=(daysInMonth===31)?"purple":((daysInMonth===30)?"green":"goldenrod");
+    return clor;
+} 
 function MonthComponents(props:MonthComponentsProps) {
     const date = new Date();
     const monthName = date.toLocaleString("default", { month: "short" });
@@ -28,9 +35,13 @@ function MonthComponents(props:MonthComponentsProps) {
                         {items.map((item, ind) => (
                             
                             <TableCell align="center" sx={{border:"1px solid rgba(224, 224, 224, 1)"}}>
-                                <Typography sx={{textDecoration:(item===monthName.toUpperCase())?"underline double  blue;":""}} color={(item===props.month.toUpperCase())?"red":"black"} onClick={()=>props.onSelMonth(item)} variant="subtitle1">
+                                <Typography sx={{textDecoration:(item===monthName.toUpperCase())?"underline double  blue;":""}} color={getColor(2023,item)} onClick={()=>props.onSelMonth(item)} variant="subtitle1">
                                     {item}
+                                    
                                 </Typography>
+                                {(item===props.month)?
+                                    <Typography  color={"red"} variant="subtitle1">.</Typography>
+                                :""}
                             </TableCell>
                         ))}
                     </TableRow>
