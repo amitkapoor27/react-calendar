@@ -8,7 +8,6 @@ import {
     TableCell,
     TableContainer,
     TableRow,
-    TextField,
     Typography,
 } from "@mui/material";
 import TodoList from "./TodoList";
@@ -31,10 +30,6 @@ const DayComponents = () => {
         setEventDate('');
       };
     
-      const handleEventSubmit = () => {
-        console.log(`Event for day ${selectedDay}: ${eventDate}`);
-        handleModalClose();
-      };
     // Create an array with 31 elements representing the days of the month
     const daysArray = Array.from({ length: daysInMonth }, (v, i) => i + 1);
 
@@ -79,7 +74,8 @@ const DayComponents = () => {
                 onClose={handleModalClose}
                 sx={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}
             >
-                <Paper sx={{minWidth:'500px'}}>
+                <Paper sx={{minWidth:'300px'}}>
+                    <Button color="error" sx={{boxShadow:"none"}} onClick={handleModalClose} >X</Button>
                     <TodoList/>
                 </Paper>
             </Modal>

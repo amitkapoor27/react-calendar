@@ -16,10 +16,14 @@ import WeekdaysGrid from "./components/WeekdayComponents";
 import DayComponents from "./components/DayComponents";
 function App() {
     const [year, setYear] = useState(new Date().getFullYear());
+    const [month, setMonth] = useState(new Date().toLocaleString("default", { month: "short" }));
     const prevYear = () => {
         setYear(year - 1);
     };
-
+    const selMonth=(value: string)=>{
+        setMonth(value);
+        
+    }
     const nextYear = () => {
         setYear(year + 1);
     };
@@ -53,7 +57,7 @@ function App() {
                                     sx={{ padding: "0px !important" }}
                                     colSpan={7}
                                 >
-                                    <MonthComponents></MonthComponents>
+                                    <MonthComponents onSelMonth={selMonth} month={month} />
                                 </TableCell>
                             </TableRow>
                         </TableBody>
