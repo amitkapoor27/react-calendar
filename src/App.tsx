@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import "./App.css";
 import YearComponents from "./components/YearComponents";
+import MonthComponents from "./components/MonthComponents";
+import WeekdaysGrid from "./components/WeekdayComponents";
+import DayComponents from "./components/DayComponents";
 function App() {
     const [year, setYear] = useState(new Date().getFullYear());
     const prevYear = () => {
@@ -21,7 +24,7 @@ function App() {
         setYear(year + 1);
     };
     return (
-        <Grid container justifyContent={"center"} alignItems="center" mt={5}>
+        <Grid container justifyContent={"center"} alignItems="center" mt={5} mb={5}>
             <Grid item xs={12} sm={10} md={8}>
                 <TableContainer component={Paper}>
                     <Table>
@@ -34,34 +37,32 @@ function App() {
                         </TableHead>
                         <TableBody>
                             <TableRow key={1}>
-                                <TableCell rowSpan={3}  colSpan={5}>
-                                    <YearComponents onPrevious={prevYear} year={year} onNext={nextYear} />
+                                <TableCell
+                                    sx={{
+                                        border: "1px solid rgba(224, 224, 224, 1)",
+                                    }}
+                                    colSpan={5}
+                                >
+                                    <YearComponents
+                                        onPrevious={prevYear}
+                                        year={year}
+                                        onNext={nextYear}
+                                    />
                                 </TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
+                                <TableCell
+                                    sx={{ padding: "0px !important" }}
+                                    colSpan={7}
+                                >
+                                    <MonthComponents></MonthComponents>
+                                </TableCell>
                             </TableRow>
-                            <TableRow key={2}>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                            </TableRow>
-                            <TableRow key={3}>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
-                                <TableCell>1</TableCell>
+                        </TableBody>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell colSpan={5} sx={{ padding: "0px !important" }}><DayComponents/></TableCell>
+                                <TableCell colSpan={7} sx={{ padding: "0px !important" }}>
+                                    <WeekdaysGrid />
+                                </TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
