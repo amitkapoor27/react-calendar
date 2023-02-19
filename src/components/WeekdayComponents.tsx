@@ -1,5 +1,4 @@
 import React from 'react';
-//import { makeStyles } from '@mui/styles';
 import { Table, TableBody, TableCell, TableContainer,  TableRow, Paper, Typography } from '@mui/material';
 
 function WeekdaysTable() {

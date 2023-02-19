@@ -12,9 +12,10 @@ import {
     Typography,
 } from "@mui/material";
 
-const daysInMonth = 31;
+
 
 const DayComponents = () => {
+    const daysInMonth = 31;
     const [selectedDay, setSelectedDay] = useState<number | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [eventDate, setEventDate] = useState('');
@@ -59,7 +60,7 @@ const DayComponents = () => {
                                             border: "1px solid rgba(224, 224, 224, 1)",
                                         }}
                                     >
-                                        <Typography onClick={() => handleDayClick(day)} variant="subtitle1">
+                                        <Typography onClick={() => handleDayClick(day)} variant="subtitle1" sx={{cursor:"pointer"}}>
                                             
                                             {cellsArray[index] !== null
                                                 ? cellsArray[index]
@@ -75,8 +76,9 @@ const DayComponents = () => {
             <Modal
                 open={modalOpen}
                 onClose={handleModalClose}
+                sx={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}
             >
-                <Paper>
+                <Paper sx={{minWidth:'500px'}}>
                     <h2>Select date for event:</h2>
                     <p>Day: {selectedDay}</p>
                     <TextField
