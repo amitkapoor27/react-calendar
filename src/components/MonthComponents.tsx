@@ -35,13 +35,12 @@ function MonthComponents(props:MonthComponentsProps) {
                         {items.map((item, ind) => (
                             
                             <TableCell align="center" sx={{border:"1px solid rgba(224, 224, 224, 1)"}}>
-                                <Typography sx={{textDecoration:(item===monthName.toUpperCase())?"underline double  blue;":""}} color={getColor(2023,item)} onClick={()=>props.onSelMonth(item)} variant="subtitle1">
+                               
+                                <Typography sx={{textDecoration:(item===monthName.toUpperCase())?"underline double  blue;":((item===props.month)?"underline dashed red 2px":"")}} color={getColor(2023,item)} onClick={()=>props.onSelMonth(item)} variant="subtitle1">
                                     {item}
                                     
                                 </Typography>
-                                {(item===props.month)?
-                                    <Typography  color={"red"} variant="subtitle1">.</Typography>
-                                :""}
+                                
                             </TableCell>
                         ))}
                     </TableRow>

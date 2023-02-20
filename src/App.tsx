@@ -17,6 +17,20 @@ import DayComponents from "./components/DayComponents";
 function App() {
     const [year, setYear] = useState(new Date().getFullYear());
     const [month, setMonth] = useState(new Date().toLocaleString("default", { month: "short" }));
+    const [selectedDay, setSelectedDay] = useState<number | null>(null);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [eventDate, setEventDate] = useState('');
+
+    const handleDayClick = (day: number|null) => {
+        setSelectedDay(day);
+        setModalOpen(true);
+      };
+    
+      const handleModalClose = () => {
+        setSelectedDay(null);
+        setModalOpen(false);
+        setEventDate('');
+      };
     const prevYear = () => {
         setYear(year - 1);
     };
@@ -63,7 +77,7 @@ function App() {
                         </TableBody>
                         <TableBody>
                             <TableRow>
-                                <TableCell colSpan={5} sx={{ padding: "0px !important" }}><DayComponents/></TableCell>
+                                <TableCell colSpan={5} sx={{ padding: "0px !important" }}><DayComponents year={year} month={month} day={selectedDay} modalOpen={modalOpen} onModalOpen={handleModalClose} onDayClick={handleDayClick}/></TableCell>
                                 <TableCell colSpan={7} sx={{ padding: "0px !important" }}>
                                     <WeekdaysGrid />
                                 </TableCell>

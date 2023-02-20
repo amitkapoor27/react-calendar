@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { TextField, Button, List, ListItem, ListItemText, FormControl } from '@mui/material';
+import { TextField, Button, List, ListItem, ListItemText, FormControl, IconButton } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import DeleteIcon from '@mui/icons-material/Delete';
+interface TodoListProps {
+  year:number;
+  month:string;
+  day:number|null;
+  onhandleSetTask:() => void;
 
+}
 
-const TodoList = () => {
+const TodoList = (props:TodoListProps) => {
   const [value, setValue] = React.useState<Dayjs | null>(
     dayjs('2018-01-01T00:00:00.000Z'),
   );
@@ -20,7 +27,9 @@ const TodoList = () => {
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
       let val=(value!==null)?value.format("hh:mm a"):'';
-      setTasks([...tasks, newTask.trim()+" "+ val]);
+      let date = props.day+"-"+props.month+"-"+props.year;
+      setTasks([...tasks, newTask.trim()+" | "+date+" "+ val]);
+      props.onhandleSetTask();
       setNewTask('');
     }
   };
@@ -37,9 +46,10 @@ const TodoList = () => {
         {tasks.map((task, index) => (
           <ListItem key={index}>
             <ListItemText primary={task} />
-            <Button variant="contained" color="secondary" onClick={() => handleDeleteTask(index)}>
-              Delete
-            </Button>
+            <IconButton aria-label="delete"  color="secondary" onClick={() => handleDeleteTask(index)}>
+              <DeleteIcon  />
+            </IconButton>
+
           </ListItem>
         ))}
       </List>
@@ -50,6 +60,7 @@ const TodoList = () => {
           onChange={handleNewTaskChange}
           variant="outlined"
           size="medium"
+          inputProps={{ maxLength: 20 }}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <TimePicker
