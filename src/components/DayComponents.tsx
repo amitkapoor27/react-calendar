@@ -24,6 +24,7 @@ interface DayComponentsProps {
     onModalOpen:()=>void;
     onDayClick:(value: number|null) => void;
    
+   
   }
 const getColor:GetColor={31:"purple",30:"green",29:"goldenrod",28:"aqua"};
 
@@ -70,7 +71,7 @@ const DayComponents = (props:DayComponentsProps) => {
                                             
                                             {cellsArray[index] !== null
                                                 ? cellsArray[index]
-                                                : ""} {(day===isSetDate && day !==null)?<CircleIcon color="error" sx={{fontSize:"0.25rem"}}/>:""}
+                                                : ""} {(day===isSetDate && day !==null)?<CircleIcon  color="error" sx={{fontSize:"0.25rem"}}/>:""}
                                             
                                         </Typography>
                                     </TableCell>
