@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Calender Design with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Calender design using the React and backend is in the PHP
 
 ## Available Scripts
 
